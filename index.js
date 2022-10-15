@@ -1,4 +1,4 @@
 const { PeerServer } = require('peer');
 
-PeerServer({ port: 443});
+PeerServer({ port: 80});
 console.log('running')
