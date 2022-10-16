@@ -1,18 +1,11 @@
 const express = require("express")
-const http = require("http")
-const path = require("path")
-const { ExpressPeerServer} = require("peer")
+const { ExpressPeerServer } = require("peer")
 
 const port = process.env.port || 3001
-
 const app = express()
-const server = http.createServer(app)
 
-const peerServer = ExpressPeerServer(server, {
-    proxied: true,
+const server = app.listen(port, () => console.log(`listening on port ${port}`))
+
+app.use(ExpressPeerServer(server, {
     debug: true,
-})
-
-app.use(peerServer)
-
-server.listen(port, () => `listening on port ${port}`)
+}))
